@@ -16,6 +16,7 @@ class LoginController extends Controller
     {
         return view('Backend/login/login')->with('bodyClass', 'authincation h-100');
     }
+
     public function register()
     {
         return view('Backend/login/register')->with('bodyClass', 'authincation h-100');
