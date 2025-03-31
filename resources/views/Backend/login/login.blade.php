@@ -11,14 +11,29 @@
                         <div class="col-xl-12">
                             <div class="auth-form">
                                 <h4 class="text-center mb-4">Sign in your account</h4>
-                                <form action="index.html">
+                                <form method="POST" action="{{route('loginPost')}}">
+                                    @csrf
+                                    @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                    @endif
+                                    @if (session('error'))
+                                    <div class="alert alert-danger">
+                                        {{ session('error') }}
+                                    </div>
+                                    @endif
                                     <div class="form-group">
                                         <label><strong>Email</strong></label>
-                                        <input type="email" class="form-control" value="hello@example.com">
+                                        <input type="text" class="form-control" name="username" placeholder="Enter The User Name">
                                     </div>
                                     <div class="form-group">
                                         <label><strong>Password</strong></label>
-                                        <input type="password" class="form-control" value="Password">
+                                        <input type="password" class="form-control" name="password" placeholder="Enter Password">
                                     </div>
                                     <div class="form-row d-flex justify-content-between mt-4 mb-2">
                                         <div class="form-group">
@@ -36,7 +51,7 @@
                                     </div>
                                 </form>
                                 <div class="new-account mt-3">
-                                    <p>Don't have an account? <a class="text-primary" href="./page-register.html">Sign up</a></p>
+                                    <p>Don't have an account? <a class="text-primary" href="{{ route('register') }}">Sign up</a></p>
                                 </div>
                             </div>
                         </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -14,6 +15,8 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        $admin_data = DB::table('users')->where('id', session('loggedinUser'))->first();
+        // return view('Backend/dashboard/dashboard', compact('admin_data'));
         return view('Backend/dashboard/dashboard');
     }
 

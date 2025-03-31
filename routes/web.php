@@ -24,6 +24,14 @@ Route::get('/', function () {
 //     return view('Backend/dashboard/dashboard');
 // });
 
-Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
 Route::get('login', [LoginController::class, 'index'])->name('login');
-Route::get('register', [LoginController::class, 'register'])->name('register');
+Route::post('loginPost', [LoginController::class, 'loginPost'])->name('loginPost');
+
+
+Route::group(['middleware' => ['checkUserLogin']], function () {
+    Route::get('logout', [LoginController::class, 'logout'])->name('logout');
+    Route::get('register', [LoginController::class, 'register'])->name('register');
+    Route::post('registerPost', [LoginController::class, 'registerPost'])->name('registerPost');
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+});

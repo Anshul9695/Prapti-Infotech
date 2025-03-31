@@ -11,14 +11,29 @@
                         <div class="col-xl-12">
                             <div class="auth-form">
                                 <h4 class="text-center mb-4">Sign up your account</h4>
-                                <form action="index.html">
+                                <form method="POST" action="{{ route('registerPost') }}" enctype="multipart/form-data">
+                                    @csrf
+                                    @if(session('success'))
+                                    <div class="alert alert-success">
+                                        {{ session('success') }}
+                                    </div>
+                                    @endif
+                                    @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                    @endif
                                     <div class="form-group">
                                         <label><strong>Username</strong></label>
-                                        <input type="text" class="form-control" placeholder="username" name="username">
+                                        <input type="text" class="form-control" placeholder="username" name="username" value="{{ old('username') }}">
                                     </div>
                                     <div class="form-group">
                                         <label><strong>Email</strong></label>
-                                        <input type="email" class="form-control" placeholder="Enter the Email" name="email">
+                                        <input type="email" class="form-control" placeholder="Enter the Email" name="email" value="{{ old('email') }}">
                                     </div>
                                     <div class="form-group">
                                         <label><strong>Password</strong></label>
@@ -29,7 +44,7 @@
                                     </div>
                                 </form>
                                 <div class="new-account mt-3">
-                                    <p>Already have an account? <a class="text-primary" href="page-login.html">Sign in</a></p>
+                                    <p>Already have an account? <a class="text-primary" href="{{ route('login') }}">Sign in</a></p>
                                 </div>
                             </div>
                         </div>
