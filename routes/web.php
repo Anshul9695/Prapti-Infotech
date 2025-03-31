@@ -34,4 +34,5 @@ Route::group(['middleware' => ['checkUserLogin']], function () {
     Route::get('register', [LoginController::class, 'register'])->name('register');
     Route::post('registerPost', [LoginController::class, 'registerPost'])->name('registerPost');
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('profile', [DashboardController::class, 'profile'])->name('profile');
 });

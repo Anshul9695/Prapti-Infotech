@@ -25,9 +25,9 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function profile()
     {
-        //
+        return view('Backend/profile/app_profile');
     }
 
     /**
